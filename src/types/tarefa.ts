@@ -1,4 +1,5 @@
 export interface ITarefa {
     tarefa:string,
-    id: string
+    id: string,
+    done: boolean
 }

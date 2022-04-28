@@ -6,7 +6,8 @@ class Formulario extends React.Component<{
     setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>
 }> {
     state = {
-        tarefa:""
+        tarefa:"",
+        done: false
     }
 
     adicionarTarefa(evento : React.FormEvent) {
