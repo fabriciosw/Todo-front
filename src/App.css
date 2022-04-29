@@ -13,3 +13,19 @@
 .finalizado {
   display: none;
 }
+
+.App button {
+  display: inline;
+  flex-direction: row;
+}
+
+.linha {
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+}
+
+.linha h5 {
+  display: inline;
+  margin-right: 20px;
+}
