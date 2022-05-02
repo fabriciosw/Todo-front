@@ -2,23 +2,24 @@ import { ITarefa } from "../../types/tarefa";
 // import Item from "./item";
 
 interface Props {
-    tarefas: ITarefa[],
     deleteTask: (id: string) => void,
     endTask: (id: string) => void,
     onlyComplete: boolean,
-    tarefass: any
+    tarefass: ITarefa[]
 }
 
-function Lista({ tarefas, deleteTask, endTask, onlyComplete, tarefass }: Props) {
-    console.log(tarefass);
+function Lista({ deleteTask, endTask, onlyComplete, tarefass }: Props) {
     return(
         <aside>
                 {
-                    tarefass.map((tarefa: {title: string, id: string, complete: boolean}) => 
+                    tarefass.map((tarefa: ITarefa) => 
                     {
                         return (
                             <div className="tarefa" key={tarefa.id}>
-                                <p>{tarefa.title}</p>
+                                <div className="dados">
+                                    <p>{tarefa.title}</p>
+                                    <span>{tarefa.description}</span>
+                                </div>
                                 <button onClick={() => deleteTask(tarefa.id)}>deletar</button>
                                 {!tarefa.complete && <button onClick={() => endTask(tarefa.id)}>terminar tarefa</button>}
                             </div>
@@ -37,7 +38,8 @@ function Lista({ tarefas, deleteTask, endTask, onlyComplete, tarefass }: Props) 
                 //             {!item.done && <button onClick={() => endTask(item.id)}>terminar tarefa</button>}
                 //         </div>
                     
-                // )})
+                //     )
+                // })
                 }
         </aside>
     )

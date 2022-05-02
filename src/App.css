@@ -5,18 +5,36 @@
 }
 
 .tarefa {
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.finalizado {
-  display: none;
+.dados {
+  display: flex;
+  flex-direction: column;
 }
 
 .App button {
   display: inline;
   flex-direction: row;
+  padding: 10px 10px;
+}
+
+p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+span {
+  font-size: 15px;
+}
+
+.campos {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
 }
 
 .linha {

@@ -1,51 +1,64 @@
-import React from "react";
-import { ITarefa } from "../../types/tarefa";
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState } from "react";
+import axios from "axios";
 
-class Formulario extends React.Component<{
-    setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>
-}> {
-    state = {
-        tarefa:"",
-        done: false
-    }
+interface Props {
+    getAll: () => void
+}
 
-    adicionarTarefa(evento : React.FormEvent) {
+function Formulario ({getAll}: Props) {
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+
+    function adicionarTarefa(evento : React.FormEvent) {
         evento.preventDefault();
-        this.props.setTarefas(tarefasAntigas => 
-            [
-                ...tarefasAntigas, 
-                {
-                ...this.state,
-                id: uuidv4()
-                }
-            ])
-        this.setState({
-            tarefa:""
+
+        axios.post('https://trainees-2022-todo-api-week-3.herokuapp.com/todos', {
+            'title': title,
+            'description': description
         })
+        .then(function (response: { data: any; }) {
+          getAll()
+        })
+        .catch(function (error: any) {
+          console.log(error);
+        });
+        
+        setTitle("")
+        setDescription('')
     }
 
-    render () {
         return (
-            <form onSubmit={this.adicionarTarefa.bind(this)}>
-                <div>
+            <form onSubmit={adicionarTarefa}>
+                <div className="campos">
                     <label htmlFor="tarefa">
-                        Adicione um novo estudo
+                        Adicione um a nova tarefa
                         </label>
                     <input 
-                        value={this.state.tarefa}
-                        onChange={evento => this.setState({ ...this.state, tarefa: evento.target.value})}
+                        value={title}
+                        onChange={evento => setTitle(evento.target.value)}
                         type="text" 
                         name="tarefa" 
                         id="tarefa" 
-                        placeholder="O que vc quer estudar ?"
+                        placeholder="Nome da tarefa"
+                        required
+                    />
+                    <label htmlFor="descricao">
+                        Adicione uma descrição
+                        </label>
+                    <input 
+                        value={description}
+                        onChange={evento => setDescription(evento.target.value)}
+                        type="text" 
+                        name="descricao" 
+                        id="descricao" 
+                        placeholder="Descricao da tarefa"
                         required
                     />
                     <input type="submit"/>
                 </div>
             </form>
         )
-    }
+    
 }
 
 export default Formulario;
