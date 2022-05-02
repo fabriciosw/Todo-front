@@ -37,6 +37,11 @@ span {
   width: 40vw;
 }
 
+form {
+  display: flex;
+  justify-content: center;
+}
+
 .linha {
   flex-direction: row;
   justify-content: space-evenly;
