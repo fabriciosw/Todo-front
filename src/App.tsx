@@ -6,8 +6,8 @@ import { ITarefa } from './types/tarefa';
 
 function App() {
   // const [tarefas, setTarefas] = useState<ITarefa[]>([]);
-  const [onlyComplete, setOnlyComplete] = useState(false);
-  const [tarefas, setTarefass] = useState<ITarefa[]>([]);
+  const [onlyComplete, setOnlyComplete] = useState<boolean|undefined>(undefined);
+  const [tarefas, setTarefas] = useState<ITarefa[]>([]);
 
   useEffect(() => {getAll()}, []);
 
@@ -21,11 +21,11 @@ function App() {
     };
     
     axios(config)
-    .then(function (response: { data: any; }) {
+    .then(function (response: { data: {}; }) {
       console.log(JSON.stringify(response.data));
       getAll()
     })
-    .catch(function (error: any) {
+    .catch(function (error: string) {
       console.log(error);
     });
   }
@@ -35,14 +35,12 @@ function App() {
     axios.put(`https://trainees-2022-todo-api-week-3.herokuapp.com/todos/${id}`, {
             'complete': true
         })
-    .then(function (response: { data: any; }) {
+    .then(function (response: { data: {}; }) {
       console.log(JSON.stringify(response.data));
-      console.log('foi')
       getAll()
     })
-    .catch(function (error: any) {
+    .catch(function (error: string) {
       console.log(error);
-      console.log('n foi')
     });
     // return setTarefas(tarefas.map((tarefa) => {
     //   if (tarefa.id === id) {
@@ -58,6 +56,9 @@ function App() {
   function verPendentes() {
     setOnlyComplete(false);
   }
+  function verTodas() {
+    setOnlyComplete(undefined)
+  }
 
   function getAll() {
     
@@ -71,7 +72,7 @@ function App() {
 
     axios(config)
       .then(function (response: any) {
-        setTarefass(response.data);
+        setTarefas(response.data);
       })
       .catch(function (error: any) {
         console.log(error);
@@ -81,26 +82,21 @@ function App() {
 
   return (
     <div className="App">
-      <h1>
-        Lista de tarefas
-      </h1>
-      <div className='linha'>
-        <h5>
-          total: {tarefas.length}
-        </h5>
-        <h5>
-          pendentes: {tarefas.filter((tarefa) => tarefa.complete === false).length}
-        </h5>
-        <h5>
-          concluídas: {tarefas.filter((tarefa) => tarefa.complete === true).length}
-        </h5>
+      <div className='leftside'>
+        <div className='formbox'>
+        <Formulario getAll={getAll} tarefas={tarefas}/>
+      
+        <div className='linha'>
+          <button onClick={() => verTodas()}>Ver Todas</button>
+          <button onClick={() => verPendentes()}>Ver Pendentes</button>
+          <button onClick={() => verFinalizadas()}>Ver Concluídas</button>
+        </div>
+        </div>
       </div>
-      <Formulario getAll={getAll}></Formulario>
-      <div className='linha'>
-        <button onClick={() => verPendentes()}>Ver Pendentes</button>
-        <button onClick={() => verFinalizadas()}>Ver Concluídas</button>
+      <div className='rightside'>
+        <h1>Tarefas</h1>
+        <Lista deleteTask={deleteTask} endTask={endTask} onlyComplete={onlyComplete} tarefas={tarefas}></Lista>
       </div>
-      <Lista deleteTask={deleteTask} endTask={endTask} onlyComplete={onlyComplete} tarefass={tarefas}></Lista>
     </div>
   );
 }

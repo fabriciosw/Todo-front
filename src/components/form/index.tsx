@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ITarefa } from "../../types/tarefa";
 
 interface Props {
-    getAll: () => void
+    getAll: () => void,
+    tarefas: ITarefa[]
 }
 
-function Formulario ({getAll}: Props) {
+function Formulario ({getAll, tarefas}: Props) {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
 
@@ -28,6 +30,21 @@ function Formulario ({getAll}: Props) {
     }
 
         return (
+        <>
+            <h1>
+              Lista de tarefas
+            </h1>
+            <div className='linha'>
+              <h5>
+                total: {tarefas.length}
+              </h5>
+              <h5>
+                pendentes: {tarefas.filter((tarefa) => tarefa.complete === false).length}
+              </h5>
+              <h5>
+                concluídas: {tarefas.filter((tarefa) => tarefa.complete === true).length}
+              </h5>
+            </div>
             <form onSubmit={adicionarTarefa}>
                 <div className="campos">
                     <label htmlFor="tarefa">
@@ -57,6 +74,7 @@ function Formulario ({getAll}: Props) {
                     <input type="submit"/>
                 </div>
             </form>
+        </>
         )
     
 }
