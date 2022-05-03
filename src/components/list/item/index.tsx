@@ -16,8 +16,10 @@ export default function Item({tarefa, deleteTask, endTask, setTarefas} : Props) 
                 <p>{tarefa.title}</p>
                 <span>{tarefa.description}</span>
             </div>
-            <img src={Trash} alt="deletar" onClick={() => deleteTask(tarefa.id, setTarefas)}/>
-            {!tarefa.complete && <img src={finish} alt="terminar" onClick={() => endTask(tarefa.id, setTarefas)}/>}
+            <div className="opcoes">
+                <img src={Trash} alt="deletar" onClick={() => deleteTask(tarefa.id, setTarefas)}/>
+                {!tarefa.complete && <img src={finish} alt="terminar" onClick={() => endTask(tarefa.id, setTarefas)}/>}
+            </div>
         </div>
     )
 }
