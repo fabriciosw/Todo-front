@@ -3,11 +3,12 @@ import axios from "axios";
 import { ITarefa } from "../../types/tarefa";
 
 interface Props {
-    getAll: () => void,
+    setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>,
+    getAll: (setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>) => void,
     tarefas: ITarefa[]
 }
 
-function Formulario ({getAll, tarefas}: Props) {
+function Formulario ({getAll, tarefas, setTarefas}: Props) {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
 
@@ -18,10 +19,10 @@ function Formulario ({getAll, tarefas}: Props) {
             'title': title,
             'description': description
         })
-        .then(function (response: { data: any; }) {
-          getAll()
+        .then(function () {
+          getAll(setTarefas)
         })
-        .catch(function (error: any) {
+        .catch(function (error: string) {
           console.log(error);
         });
         

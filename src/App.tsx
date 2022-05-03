@@ -3,13 +3,13 @@ import './App.css';
 import Formulario from './components/form';
 import Lista from './components/list';
 import { ITarefa } from './types/tarefa';
+import getAll from './services/getAll'
 
 function App() {
-  // const [tarefas, setTarefas] = useState<ITarefa[]>([]);
   const [onlyComplete, setOnlyComplete] = useState<boolean|undefined>(undefined);
   const [tarefas, setTarefas] = useState<ITarefa[]>([]);
 
-  useEffect(() => {getAll()}, []);
+  useEffect(() => {getAll(setTarefas)}, []);
 
   function deleteTask(id: string) {
     var axios = require('axios');
@@ -21,9 +21,8 @@ function App() {
     };
     
     axios(config)
-    .then(function (response: { data: {}; }) {
-      console.log(JSON.stringify(response.data));
-      getAll()
+    .then(function () {
+      getAll(setTarefas)
     })
     .catch(function (error: string) {
       console.log(error);
@@ -35,19 +34,12 @@ function App() {
     axios.put(`https://trainees-2022-todo-api-week-3.herokuapp.com/todos/${id}`, {
             'complete': true
         })
-    .then(function (response: { data: {}; }) {
-      console.log(JSON.stringify(response.data));
-      getAll()
+    .then(function () {
+      getAll(setTarefas)
     })
     .catch(function (error: string) {
       console.log(error);
     });
-    // return setTarefas(tarefas.map((tarefa) => {
-    //   if (tarefa.id === id) {
-    //     tarefa.done = true
-    //   }
-    //   return tarefa
-    // }))
   }
 
   function verFinalizadas() {
@@ -60,31 +52,11 @@ function App() {
     setOnlyComplete(undefined)
   }
 
-  function getAll() {
-    
-    var axios = require('axios');
-
-    var config = {
-      method: 'get',
-      url: 'https://trainees-2022-todo-api-week-3.herokuapp.com/todos/',
-      headers: {}
-    };
-
-    axios(config)
-      .then(function (response: any) {
-        setTarefas(response.data);
-      })
-      .catch(function (error: any) {
-        console.log(error);
-      });
-  
-}
-
   return (
     <div className="App">
       <div className='leftside'>
         <div className='formbox'>
-        <Formulario getAll={getAll} tarefas={tarefas}/>
+        <Formulario getAll={getAll} tarefas={tarefas} setTarefas={setTarefas}/>
       
         <div className='linha'>
           <button onClick={() => verTodas()}>Ver Todas</button>
