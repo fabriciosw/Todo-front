@@ -1,5 +1,6 @@
 import { ITarefa } from "../../../types/tarefa";
 import Trash from "../../../images/Trash.png"
+import finish from "../../../images/finish.jpg"
 
 interface Props {
     tarefa: ITarefa, 
@@ -9,13 +10,13 @@ interface Props {
 
 export default function Item({tarefa, deleteTask, endTask} : Props) {
     return (
-        <div className="tarefa" key={tarefa.id}>
+        <div className={`tarefa ${tarefa.complete ? 'finalizado' : ''} `} key={tarefa.id}>
             <div className="dados">
                 <p>{tarefa.title}</p>
                 <span>{tarefa.description}</span>
             </div>
-            <img src={Trash} alt="deletar" onClick={() => deleteTask(tarefa.id)}></img>
-            {!tarefa.complete && <button onClick={() => endTask(tarefa.id)}>terminar tarefa</button>}
+            <img src={Trash} alt="deletar" onClick={() => deleteTask(tarefa.id)}/>
+            {!tarefa.complete && <img src={finish} alt="terminar" onClick={() => endTask(tarefa.id)}/>}
         </div>
     )
 }

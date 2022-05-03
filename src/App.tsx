@@ -94,7 +94,7 @@ function App() {
         </div>
       </div>
       <div className='rightside'>
-        <h1>Tarefas</h1>
+        <h1 className='title'>Tarefas</h1>
         <Lista deleteTask={deleteTask} endTask={endTask} onlyComplete={onlyComplete} tarefas={tarefas}></Lista>
       </div>
     </div>

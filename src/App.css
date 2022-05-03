@@ -44,12 +44,16 @@ aside {
 .tarefa {
   margin-bottom: 20px;
   width: 50%;
-  background-color: rgba(137, 43, 226, 0.89);
+  background-color: #1B98E0;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+}
+
+.finalizado {
+  background-color: rgba(40, 197, 40, 0.801);
 }
 
 .dados {
@@ -62,6 +66,10 @@ aside {
   width: 80px;
 }
 
+.title {
+  margin: 40px 0 20px 0;
+}
+
 p {
   font-size: 20px;
   font-weight: bold;
@@ -69,6 +77,10 @@ p {
 
 span {
   font-size: 15px;
+}
+
+label {
+  margin-top: 15px;
 }
 
 .campos {
@@ -82,8 +94,8 @@ input {
 }
 
 img {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 
 form {
