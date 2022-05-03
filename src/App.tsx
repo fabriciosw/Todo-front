@@ -4,35 +4,23 @@ import Formulario from './components/form';
 import Lista from './components/list';
 import { ITarefa } from './types/tarefa';
 import getAll from './services/getAll'
+import endTask from './services/endTask';
 import deleteTask from './services/deleteTask';
 
 function App() {
-  const [onlyComplete, setOnlyComplete] = useState<boolean|undefined>(undefined);
+  const [taskStatus, setTaskStatus] = useState<boolean|undefined>(undefined);
   const [tarefas, setTarefas] = useState<ITarefa[]>([]);
 
   useEffect(() => {getAll(setTarefas)}, []);
 
-  function endTask(id: string) {
-    var axios = require('axios');
-    axios.put(`https://trainees-2022-todo-api-week-3.herokuapp.com/todos/${id}`, {
-            'complete': true
-        })
-    .then(function () {
-      getAll(setTarefas)
-    })
-    .catch(function (error: string) {
-      console.log(error);
-    });
-  }
-
   function verFinalizadas() {
-    setOnlyComplete(true);
+    setTaskStatus(true);
   }
   function verPendentes() {
-    setOnlyComplete(false);
+    setTaskStatus(false);
   }
   function verTodas() {
-    setOnlyComplete(undefined)
+    setTaskStatus(undefined)
   }
 
   return (
@@ -53,7 +41,7 @@ function App() {
         <Lista 
           deleteTask={deleteTask} 
           endTask={endTask} 
-          onlyComplete={onlyComplete} 
+          taskStatus={taskStatus} 
           tarefas={tarefas} 
           setTarefas={setTarefas}
         />
