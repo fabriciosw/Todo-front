@@ -1,6 +1,5 @@
 import { ITarefa } from "../../types/tarefa";
 import Item from "./item";
-// import Item from "./item";
 
 interface Props {
     deleteTask: (id: string) => void,

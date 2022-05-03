@@ -1,4 +1,5 @@
 import { ITarefa } from "../../../types/tarefa";
+import Trash from "../../../images/Trash.png"
 
 interface Props {
     tarefa: ITarefa, 
@@ -13,7 +14,7 @@ export default function Item({tarefa, deleteTask, endTask} : Props) {
                 <p>{tarefa.title}</p>
                 <span>{tarefa.description}</span>
             </div>
-            <button onClick={() => deleteTask(tarefa.id)}>deletar</button>
+            <img src={Trash} alt="deletar" onClick={() => deleteTask(tarefa.id)}></img>
             {!tarefa.complete && <button onClick={() => endTask(tarefa.id)}>terminar tarefa</button>}
         </div>
     )
