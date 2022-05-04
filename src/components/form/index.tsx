@@ -1,40 +1,15 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { ITarefa } from "../../types/tarefa";
+import * as todoServices from '../../services/todoServices'
 
 interface Props {
     setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>,
-    getAll: (setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>) => void,
     tarefas: ITarefa[]
 }
 
-function Formulario ({getAll, tarefas, setTarefas}: Props) {
+function Formulario ({ tarefas, setTarefas}: Props) {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-
-    function adicionarTarefa(evento : React.FormEvent) {
-        evento.preventDefault();
-
-        let desc;
-        if (description.trim()==='')
-        desc='Sem descrição'
-        else
-        desc= description
-
-        axios.post('https://trainees-2022-todo-api-week-3.herokuapp.com/todos', {
-            'title': title,
-            'description': desc
-        })
-        .then(function () {
-          getAll(setTarefas)
-        })
-        .catch(function (error: string) {
-          console.log(error);
-        });
-        
-        setTitle("")
-        setDescription('')
-    }
 
         return (
         <>
@@ -52,7 +27,7 @@ function Formulario ({getAll, tarefas, setTarefas}: Props) {
                 concluídas: {tarefas.filter((tarefa) => tarefa.complete === true).length}
               </h5>
             </div>
-            <form onSubmit={adicionarTarefa}>
+            <form onSubmit={(event) => todoServices.adicionarTarefa(event, description, title, setTarefas, setTitle, setDescription)}>
                 <div className="campos">
                     <label htmlFor="tarefa">
                         Adicione um a nova tarefa

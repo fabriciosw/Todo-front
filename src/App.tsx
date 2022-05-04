@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       <div className='leftside'>
         <div className='formbox'>
-        <Formulario getAll={todoServices.getAll} tarefas={tarefas} setTarefas={setTarefas}/>
+        <Formulario tarefas={tarefas} setTarefas={setTarefas}/>
       
         <div className='linha'>
           <button onClick={() => verTodas()}>Ver Todas</button>
