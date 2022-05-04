@@ -1,4 +1,4 @@
-import { ITarefa } from "../../../types/tarefa";
+import { ITarefa } from "../../../interfaces/tarefa";
 import Trash from "../../../images/Trash.png"
 import finish from "../../../images/finish.jpg"
 

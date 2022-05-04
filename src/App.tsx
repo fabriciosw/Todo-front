@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Formulario from './components/form';
 import Lista from './components/list';
-import { ITarefa } from './types/tarefa';
+import { ITarefa } from './interfaces/tarefa';
 import * as todoServices from './services/todoServices'
 
 function App() {

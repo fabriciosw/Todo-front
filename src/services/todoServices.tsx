@@ -1,4 +1,4 @@
-import { ITarefa } from '../types/tarefa'
+import { ITarefa } from '../interfaces/tarefa'
 
 export function getAll (setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>) {
     var axios = require('axios');

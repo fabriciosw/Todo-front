@@ -1,4 +1,4 @@
-import { ITarefa } from "../../types/tarefa";
+import { ITarefa } from "../../interfaces/tarefa";
 import Item from "./item";
 
 interface Props {

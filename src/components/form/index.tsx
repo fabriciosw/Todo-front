@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ITarefa } from "../../types/tarefa";
+import { ITarefa } from "../../interfaces/tarefa";
 import * as todoServices from '../../services/todoServices'
 
 interface Props {
