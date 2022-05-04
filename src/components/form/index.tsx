@@ -15,9 +15,15 @@ function Formulario ({getAll, tarefas, setTarefas}: Props) {
     function adicionarTarefa(evento : React.FormEvent) {
         evento.preventDefault();
 
+        let desc;
+        if (description.trim()==='')
+        desc='Sem descrição'
+        else
+        desc= description
+
         axios.post('https://trainees-2022-todo-api-week-3.herokuapp.com/todos', {
             'title': title,
-            'description': description
+            'description': desc
         })
         .then(function () {
           getAll(setTarefas)
@@ -70,7 +76,6 @@ function Formulario ({getAll, tarefas, setTarefas}: Props) {
                         name="descricao" 
                         id="descricao" 
                         placeholder="Descricao da tarefa"
-                        required
                     />
                     <input type="submit"/>
                 </div>
