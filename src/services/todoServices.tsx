@@ -1,6 +1,6 @@
 import { ITarefa } from '../interfaces/tarefa'
 
-export function getAll (setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>) {
+export function getAll (setTarefas: (x: ITarefa[]) => void) {
     var axios = require('axios');
 
     var config = {
@@ -18,7 +18,7 @@ export function getAll (setTarefas: React.Dispatch<React.SetStateAction<ITarefa[
       });
 }
 
-export function endTask(id: string, setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>) {
+export function endTask(id: string, setTarefas: (x: ITarefa[]) => void) {
     var axios = require('axios');
     axios.put(`https://trainees-2022-todo-api-week-3.herokuapp.com/todos/${id}`, {
             'complete': true
@@ -31,7 +31,7 @@ export function endTask(id: string, setTarefas: React.Dispatch<React.SetStateAct
     });
   }
 
-export function deleteTask(id: string, setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>) {
+export function deleteTask(id: string, setTarefas: (x: ITarefa[]) => void) {
     var axios = require('axios');
 
     var config = {
@@ -53,7 +53,7 @@ export function deleteTask(id: string, setTarefas: React.Dispatch<React.SetState
       evento : React.FormEvent, 
       description: string, 
       title: string, 
-      setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>, 
+      setTarefas: (x: ITarefa[]) => void, 
       setTitle: React.Dispatch<string>,
       setDescription: React.Dispatch<string>
       ) {

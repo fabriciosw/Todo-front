@@ -1,15 +1,16 @@
 import { ITarefa } from "../../../interfaces/tarefa";
 import Trash from "../../../images/Trash.png"
 import finish from "../../../images/finish.jpg"
+import { Tarefas } from "../../../contexts/task";
+import * as todoServices from '../../../services/todoServices'
 
 interface Props {
-    tarefa: ITarefa, 
-    deleteTask: (id: string, setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>) => void, 
-    endTask: (id: string,setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>) => void,
-    setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>
+    tarefa: ITarefa,
 }
 
-export default function Item({tarefa, deleteTask, endTask, setTarefas} : Props) {
+export default function Item({tarefa} : Props) {
+    const { setTarefas } = Tarefas()
+
     return (
         <div className={`tarefa ${tarefa.complete ? 'finalizado' : ''} `} key={tarefa.id}>
             <div className="dados">
@@ -17,8 +18,8 @@ export default function Item({tarefa, deleteTask, endTask, setTarefas} : Props) 
                 <span>{tarefa.description}</span>
             </div>
             <div className="opcoes">
-                <img src={Trash} alt="deletar" onClick={() => deleteTask(tarefa.id, setTarefas)}/>
-                {!tarefa.complete && <img src={finish} alt="terminar" onClick={() => endTask(tarefa.id, setTarefas)}/>}
+                <img src={Trash} alt="deletar" onClick={() => todoServices.deleteTask(tarefa.id, setTarefas)}/>
+                {!tarefa.complete && <img src={finish} alt="terminar" onClick={() => todoServices.endTask(tarefa.id, setTarefas)}/>}
             </div>
         </div>
     )

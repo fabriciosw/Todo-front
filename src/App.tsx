@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Formulario from './components/form';
 import Lista from './components/list';
+import { Tarefa } from './contexts/task';
 import { ITarefa } from './interfaces/tarefa';
 import * as todoServices from './services/todoServices'
 
@@ -22,29 +23,28 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className='leftside'>
-        <div className='formbox'>
-        <Formulario tarefas={tarefas} setTarefas={setTarefas}/>
-      
-        <div className='linha'>
-          <button onClick={() => verTodas()}>Ver Todas</button>
-          <button onClick={() => verPendentes()}>Ver Pendentes</button>
-          <button onClick={() => verFinalizadas()}>Ver Concluídas</button>
+    <Tarefa.Provider value={{tarefas, setTarefas}}>
+      <div className="App">
+        <div className='leftside'>
+          <div className='formbox'>
+
+          <Formulario/>
+
+          <div className='linha'>
+            <button onClick={() => verTodas()}>Ver Todas</button>
+            <button onClick={() => verPendentes()}>Ver Pendentes</button>
+            <button onClick={() => verFinalizadas()}>Ver Concluídas</button>
+          </div>
+          </div>
         </div>
+        <div className='rightside'>
+          <h1 className='title'>Tarefas</h1>
+          <Lista
+            taskStatus={taskStatus}
+          />
         </div>
       </div>
-      <div className='rightside'>
-        <h1 className='title'>Tarefas</h1>
-        <Lista 
-          deleteTask={todoServices.deleteTask} 
-          endTask={todoServices.endTask} 
-          taskStatus={taskStatus} 
-          tarefas={tarefas} 
-          setTarefas={setTarefas}
-        />
-      </div>
-    </div>
+    </Tarefa.Provider>
   );
 }
 

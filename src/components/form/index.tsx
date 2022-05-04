@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import { ITarefa } from "../../interfaces/tarefa";
 import * as todoServices from '../../services/todoServices'
+import { Tarefas } from '../../contexts/task'
 
-interface Props {
-    setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>,
-    tarefas: ITarefa[]
-}
-
-function Formulario ({ tarefas, setTarefas}: Props) {
+function Formulario () {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-
+    const { tarefas, setTarefas } = Tarefas()
         return (
         <>
             <h1>
