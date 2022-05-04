@@ -3,15 +3,13 @@ import './App.css';
 import Formulario from './components/form';
 import Lista from './components/list';
 import { ITarefa } from './types/tarefa';
-import getAll from './services/getAll'
-import endTask from './services/endTask';
-import deleteTask from './services/deleteTask';
+import * as todoServices from './services/todoServices'
 
 function App() {
   const [taskStatus, setTaskStatus] = useState<boolean|undefined>(undefined);
   const [tarefas, setTarefas] = useState<ITarefa[]>([]);
 
-  useEffect(() => {getAll(setTarefas)}, []);
+  useEffect(() => {todoServices.getAll(setTarefas)}, []);
 
   function verFinalizadas() {
     setTaskStatus(true);
@@ -27,7 +25,7 @@ function App() {
     <div className="App">
       <div className='leftside'>
         <div className='formbox'>
-        <Formulario getAll={getAll} tarefas={tarefas} setTarefas={setTarefas}/>
+        <Formulario getAll={todoServices.getAll} tarefas={tarefas} setTarefas={setTarefas}/>
       
         <div className='linha'>
           <button onClick={() => verTodas()}>Ver Todas</button>
@@ -39,8 +37,8 @@ function App() {
       <div className='rightside'>
         <h1 className='title'>Tarefas</h1>
         <Lista 
-          deleteTask={deleteTask} 
-          endTask={endTask} 
+          deleteTask={todoServices.deleteTask} 
+          endTask={todoServices.endTask} 
           taskStatus={taskStatus} 
           tarefas={tarefas} 
           setTarefas={setTarefas}
