@@ -1,15 +1,16 @@
 import { ITarefa } from "../../../interfaces/tarefa";
-import Trash from "../../../images/Trash.png"
-import finish from "../../../images/finish.jpg"
-import { Tarefas } from "../../../contexts/task";
+import Trash from "../../../statics/images/Trash.png"
+import finish from "../../../statics/images/finish.jpg"
+import { Tarefa } from "../../../contexts/task";
 import * as todoServices from '../../../services/todoServices'
+import { useContext } from "react";
 
 interface Props {
     tarefa: ITarefa,
 }
 
 export default function Item({tarefa} : Props) {
-    const { setTarefas } = Tarefas()
+    const { setTarefas } = useContext(Tarefa)
 
     return (
         <div className={`tarefa ${tarefa.complete ? 'finalizado' : ''} `} key={tarefa.id}>
