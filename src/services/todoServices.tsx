@@ -5,7 +5,7 @@ export function getAll (setTarefas: (x: ITarefa[]) => void) {
 
     var config = {
       method: 'get',
-      url: 'https://trainees-2022-todo-api-week-3.herokuapp.com/todos/',
+      url: 'http://localhost:3333/tasks/',
       headers: {}
     };
 
@@ -18,9 +18,9 @@ export function getAll (setTarefas: (x: ITarefa[]) => void) {
       });
 }
 
-export function endTask(id: string, setTarefas: (x: ITarefa[]) => void) {
+export function endTask(id: number, setTarefas: (x: ITarefa[]) => void) {
     var axios = require('axios');
-    axios.put(`https://trainees-2022-todo-api-week-3.herokuapp.com/todos/${id}`, {
+    axios.put(`http://localhost:3333/tasks/${id}`, {
             'complete': true
         })
     .then(function () {
@@ -31,12 +31,12 @@ export function endTask(id: string, setTarefas: (x: ITarefa[]) => void) {
     });
   }
 
-export function deleteTask(id: string, setTarefas: (x: ITarefa[]) => void) {
+export function deleteTask(id: number, setTarefas: (x: ITarefa[]) => void) {
     var axios = require('axios');
 
     var config = {
       method: 'delete',
-      url: `https://trainees-2022-todo-api-week-3.herokuapp.com/todos/${id}`,
+      url: `http://localhost:3333/tasks/${id}`,
       headers: { }
     };
     
@@ -66,7 +66,7 @@ export function deleteTask(id: string, setTarefas: (x: ITarefa[]) => void) {
     desc= description
 
     var axios = require('axios');
-    axios.post('https://trainees-2022-todo-api-week-3.herokuapp.com/todos', {
+    axios.post('http://localhost:3333/tasks/', {
         'title': title,
         'description': desc
     })

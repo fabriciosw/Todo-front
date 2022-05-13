@@ -11,10 +11,10 @@ function Lista({ taskStatus }: Props) {
     return(
         <aside>
                 {   
-                taskStatus===undefined ? tarefas.map((tarefa) => <Item tarefa={tarefa}/>) 
+                taskStatus === undefined ? tarefas.map((tarefa) => <Item tarefa={tarefa} key={ tarefa.id }/>) 
                 : 
                 tarefas.filter((tarefa: ITarefa) => tarefa.complete===taskStatus ).map((tarefa) => 
-                        <Item tarefa={tarefa}/>
+                        <Item tarefa={tarefa} key={ tarefa.id }/>
                     )
                 }
         </aside>

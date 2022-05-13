@@ -61,7 +61,7 @@ aside {
   margin-left: 20px;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .title {
@@ -94,6 +94,7 @@ input {
 img {
   width: 30px;
   height: 30px;
+  margin-left: 10px;
 }
 
 img:hover {

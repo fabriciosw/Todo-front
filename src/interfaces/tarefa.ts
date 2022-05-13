@@ -1,6 +1,6 @@
 export interface ITarefa {
-    id: string,
-    title: string,
-    description: string,
-    complete: boolean
+  id: number;
+  title: string;
+  description: string;
+  complete: boolean;
 }

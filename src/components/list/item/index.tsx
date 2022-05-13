@@ -19,8 +19,8 @@ export default function Item({tarefa} : Props) {
                 <span>{tarefa.description}</span>
             </div>
             <div className="opcoes">
+                {!tarefa.complete && <img src={finish} alt="terminar" onClick={() => todoServices.endTask(tarefa.id, setTarefas)} />}
                 <img src={Trash} alt="deletar" onClick={() => todoServices.deleteTask(tarefa.id, setTarefas)}/>
-                {!tarefa.complete && <img src={finish} alt="terminar" onClick={() => todoServices.endTask(tarefa.id, setTarefas)}/>}
             </div>
         </div>
     )
