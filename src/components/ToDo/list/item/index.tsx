@@ -1,8 +1,8 @@
-import { ITarefa } from "../../../interfaces/tarefa";
-import Trash from "../../../statics/images/Trash.png"
-import finish from "../../../statics/images/finish.jpg"
-import { Tarefa } from "../../../contexts/task";
-import * as todoServices from '../../../services/todoServices'
+import { ITarefa } from "../../../../interfaces/tarefa";
+import Trash from "../../../../statics/images/Trash.png"
+import finish from "../../../../statics/images/finish.jpg"
+import { Tarefa } from "../../../../contexts/task";
+import * as todoServices from '../../../../services/todoServices'
 import { useContext } from "react";
 
 interface Props {

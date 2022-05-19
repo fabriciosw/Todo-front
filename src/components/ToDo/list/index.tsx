@@ -1,5 +1,5 @@
-import { Tarefas } from "../../contexts/task";
-import { ITarefa } from "../../interfaces/tarefa";
+import { Tarefas } from "../../../contexts/task";
+import { ITarefa } from "../../../interfaces/tarefa";
 import Item from "./item";
 
 interface Props {
