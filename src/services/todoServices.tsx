@@ -1,7 +1,8 @@
 import { ITarefa } from '../interfaces/tarefa'
+import axios from 'axios';
 
 export function getAll (setTarefas: (x: ITarefa[]) => void) {
-    var axios = require('axios');
+    
 
     var config = {
       method: 'get',
@@ -19,7 +20,6 @@ export function getAll (setTarefas: (x: ITarefa[]) => void) {
 }
 
 export function endTask(id: number, setTarefas: (x: ITarefa[]) => void) {
-    var axios = require('axios');
     axios.put(`http://localhost:3333/tasks/${id}`, {
             'complete': true
         })
@@ -32,7 +32,6 @@ export function endTask(id: number, setTarefas: (x: ITarefa[]) => void) {
   }
 
 export function deleteTask(id: number, setTarefas: (x: ITarefa[]) => void) {
-    var axios = require('axios');
 
     var config = {
       method: 'delete',
@@ -65,10 +64,10 @@ export function deleteTask(id: number, setTarefas: (x: ITarefa[]) => void) {
     else
     desc= description
 
-    var axios = require('axios');
     axios.post('http://localhost:3333/tasks/', {
         'title': title,
-        'description': desc
+        'description': desc,
+        'user_id': 1
     })
     .then(function () {
       getAll(setTarefas)

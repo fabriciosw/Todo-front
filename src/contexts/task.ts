@@ -6,9 +6,7 @@ type Props = {
   setTarefas: (x: ITarefa[]) => void;
 };
 
-export const Tarefa = createContext<Props>({
-  tarefas: [{ id: 0, title: "", description: "", complete: false }],
-  setTarefas: () => {},
-});
+export const Tarefa = createContext<Props>({} as Props);
 
 export const Tarefas = () => useContext(Tarefa);
+ 
