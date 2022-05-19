@@ -8,3 +8,9 @@ export function loginUser(evento: React.FormEvent, email: string, password: stri
     .catch((erro) => console.log(erro))
     
 }
+
+export function validateToken(token: string) {
+    axios.post('http://localhost:3333/sessions/validate', {}, {headers: {'Authorization': `bearer ${token}`}})
+    .then((res => console.log(res.data)))
+    .catch((erro) => console.log(erro))
+}
