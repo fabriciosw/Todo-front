@@ -2,8 +2,6 @@ import { ITarefa } from '../interfaces/tarefa'
 import axios from 'axios';
 
 export function getAll (setTarefas: (x: ITarefa[]) => void) {
-    
-
     var config = {
       method: 'get',
       url: 'http://localhost:3333/tasks/',
