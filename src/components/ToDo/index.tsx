@@ -4,10 +4,13 @@ import { ITarefa } from "../../interfaces/tarefa";
 import Formulario from "./form";
 import * as todoServices from '../../services/todoServices'
 import Lista from "./list";
+import { logoutUser } from "../../services/userServices";
+import { AuthenticationContext } from "../../contexts/authenticated";
 
 export const ToDo = () => {
     const [taskStatus, setTaskStatus] = useState<boolean|undefined>(undefined);
     const [tarefas, setTarefas] = useState<ITarefa[]>([]);
+    const { setIsAuthenticated } = AuthenticationContext();
 
     useEffect(() => { todoServices.getAll(setTarefas) }, []);
     
@@ -34,6 +37,7 @@ export const ToDo = () => {
                 <button onClick={() => verFinalizadas()}>Ver Concluídas</button>
             </div>
             </div>
+            <button onClick={() => logoutUser(setIsAuthenticated)}>Deslogar</button>
             </div>
             <div className='rightside'>
             <h1 className='title'>Tarefas</h1>

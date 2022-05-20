@@ -9,4 +9,3 @@ type Props = {
 export const Tarefa = createContext<Props>({} as Props);
 
 export const Tarefas = () => useContext(Tarefa);
- 
