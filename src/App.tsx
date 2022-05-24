@@ -25,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/login" element={isAuthenticated ? <Navigate to="/todo" replace /> : <Login/>} />
           <Route path="/todo" element={isAuthenticated ? <ToDo /> : <Navigate to="/login" replace />} />
+          <Route path="*" element={isAuthenticated ? <ToDo /> : <Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>
     </Authentication.Provider>

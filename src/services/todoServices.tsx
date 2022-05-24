@@ -1,23 +1,16 @@
 import { ITarefa } from '../interfaces/tarefa'
 import axios from 'axios';
-import jwt_decode from "jwt-decode";
 
 let token: string | null;
-let user: number;
 
 export function getToken() {
    token = localStorage.getItem('token');
-
-    if(token){
-      const data = token;
-      const decoded: { sub: number } = jwt_decode(data);
-      user = decoded.sub;
-    }
 }
+getToken()
 
 export function getAll (setTarefas: (x: ITarefa[]) => void) {
 
-    axios.get('http://localhost:3333/tasks/', {headers: {user: user, Authorization: `bearer ${token}`}})
+    axios.get('http://localhost:3333/tasks/', {headers: { Authorization: `bearer ${token}`}})
       .then(function (response: {data: Array<ITarefa>}) {
         return setTarefas(response.data);
       })
@@ -73,8 +66,7 @@ export function deleteTask(id: number, setTarefas: (x: ITarefa[]) => void) {
 
     axios.post('http://localhost:3333/tasks/', {
         'title': title,
-        'description': desc,
-        'user_id': user
+        'description': desc
     },{headers: {Authorization: `bearer ${token}`}})
     .then(function () {
       getAll(setTarefas)
