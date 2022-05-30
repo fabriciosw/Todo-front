@@ -1,14 +1,15 @@
 import { useState } from "react";
 import * as userServices from "../../services/userServices"
-import { AuthenticationContext} from "../../contexts/authenticated";
+import { AuthenticationContext } from "../../contexts/authenticated";
 
-export default function Login() {
+
+export default function Login({ loginUser }: { loginUser:(evento: React.FormEvent<Element>, email: string, password: string, setIsAuthenticated: (x: boolean) => void) => Promise<void> }) {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const { setIsAuthenticated } = AuthenticationContext()
     
     return (
-        <form onSubmit={(event) => userServices.loginUser(event, email, senha, setIsAuthenticated)}>
+        <form onSubmit={(event) => loginUser(event, email, senha, setIsAuthenticated)}>
                 <div className="campos">
                     <label htmlFor="email">
                         Faça login
@@ -20,7 +21,7 @@ export default function Login() {
                         name="email" 
                         id="email" 
                         placeholder="E-mail"
-                        required
+                        // required
                     />
                     <label htmlFor="senha">
                         Adicione uma descrição
@@ -32,9 +33,9 @@ export default function Login() {
                         name="senha" 
                         id="senha" 
                         placeholder="Senha"
-                        required
+                        // required
                     />
-                    <input type="submit" />
+                    <input type="submit" data-testid="logar"/>
                 </div>
             </form>
     )

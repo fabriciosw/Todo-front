@@ -4,14 +4,14 @@ import './App.css';
 import Login from './components/Login';
 import { ToDo } from './components/ToDo';
 import { Authentication } from './contexts/authenticated';
-import { validateToken } from './services/userServices';
+import * as userServices from './services/userServices';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   
   useEffect(() => {
     async function validacaoInicial() {
-     const auth = await validateToken();
+     const auth = await userServices.validateToken();
     if(auth)
     setIsAuthenticated(auth);
     }
@@ -23,7 +23,7 @@ function App() {
     <Authentication.Provider value={{isAuthenticated, setIsAuthenticated}}>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={isAuthenticated ? <Navigate to="/todo" replace /> : <Login/>} />
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/todo" replace /> : <Login loginUser={ userServices.loginUser }/>} />
           <Route path="/todo" element={isAuthenticated ? <ToDo /> : <Navigate to="/login" replace />} />
           <Route path="*" element={isAuthenticated ? <ToDo /> : <Navigate to="/login" replace />} />
         </Routes>
