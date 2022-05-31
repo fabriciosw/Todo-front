@@ -13,7 +13,7 @@ export default function Item({tarefa} : Props) {
     const { setTarefas } = useContext(Tarefa)
 
     return (
-        <div className={`tarefa ${tarefa.complete ? 'finalizado' : ''} `} key={tarefa.id}>
+        <div className={`tarefa${tarefa.complete ? ' finalizado' : ''}`} key={tarefa.id}>
             <div className="dados">
                 <p>{tarefa.title}</p>
                 <span>{tarefa.description}</span>
