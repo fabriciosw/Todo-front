@@ -21,7 +21,7 @@ export default function Login({ loginUser }: { loginUser:(evento: React.FormEven
                         name="email" 
                         id="email" 
                         placeholder="E-mail"
-                        // required
+                        required
                     />
                     <label htmlFor="senha">
                         Adicione uma descrição
@@ -33,7 +33,7 @@ export default function Login({ loginUser }: { loginUser:(evento: React.FormEven
                         name="senha" 
                         id="senha" 
                         placeholder="Senha"
-                        // required
+                        required
                     />
                     <input type="submit" data-testid="logar"/>
                 </div>

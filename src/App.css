@@ -30,6 +30,7 @@
 }
 
 .formbox {
+  width: 60%;
   border-radius: 20px;
   padding: 25px;
   background-color: #136ea3;
@@ -124,7 +125,7 @@ button:hover {
 }
 
 .linha {
-  margin-top: 20px;
+  margin: 20px 0;
   flex-direction: row;
   display: flex;
   justify-content: space-around;

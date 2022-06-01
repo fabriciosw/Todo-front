@@ -36,8 +36,9 @@ export const ToDo = () => {
                 <button onClick={() => verPendentes()}>Ver Pendentes</button>
                 <button onClick={() => verFinalizadas()}>Ver Concluídas</button>
             </div>
+                <button onClick={() => logoutUser(setIsAuthenticated)}>Deslogar</button>
             </div>
-            <button onClick={() => logoutUser(setIsAuthenticated)}>Deslogar</button>
+            
             </div>
             <div className='rightside'>
             <h1 className='title'>Tarefas</h1>
