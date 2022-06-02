@@ -1,6 +1,6 @@
-import { Tarefas } from "../../../contexts/task";
-import { ITarefa } from "../../../interfaces/tarefa";
-import Item from "./item";
+import { Tarefas } from "../../contexts/TaskContext/index";
+import { ITarefa } from "../../interfaces/tarefa";
+import Item from "../Item";
 
 interface Props {
     taskStatus: boolean|undefined

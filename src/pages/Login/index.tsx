@@ -1,6 +1,5 @@
 import { useState } from "react";
-import * as userServices from "../../services/userServices"
-import { AuthenticationContext } from "../../contexts/authenticated";
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 
 
 export default function Login({ loginUser }: { loginUser:(evento: React.FormEvent<Element>, email: string, password: string, setIsAuthenticated: (x: boolean) => void) => Promise<void> }) {
@@ -18,7 +17,7 @@ export default function Login({ loginUser }: { loginUser:(evento: React.FormEven
                         value={email}
                         onChange={evento => setEmail(evento.target.value)}
                         type="email" 
-                        name="email" 
+                        name="email"
                         id="email" 
                         placeholder="E-mail"
                         required

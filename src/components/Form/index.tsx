@@ -1,6 +1,6 @@
 import { useState } from "react";
-import * as todoServices from '../../../services/todoServices'
-import { Tarefas } from '../../../contexts/task'
+import * as todoServices from '../../services/todoServices'
+import { Tarefas } from '../../contexts/TaskContext'
 
 function Formulario () {
     const [title, setTitle] = useState("")

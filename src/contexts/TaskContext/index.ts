@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ITarefa } from "../interfaces/tarefa";
+import { ITarefa } from "../../interfaces/tarefa";
 
 type Props = {
   tarefas: ITarefa[];

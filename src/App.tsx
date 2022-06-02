@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Login from './components/Login';
-import { ToDo } from './components/ToDo';
-import { Authentication } from './contexts/authenticated';
+import Login from './pages/Login';
+import { ToDo } from './pages/ToDo';
+import { Authentication } from './contexts/AuthenticationContext';
 import * as userServices from './services/userServices';
 
 function App() {

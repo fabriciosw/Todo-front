@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import Item from "./index";
 import '@testing-library/jest-dom'
-import { ITarefa } from '../../../../interfaces/tarefa'
+import { ITarefa } from '../../interfaces/tarefa'
 
 describe('Item component', () => {
     it('must match snapshot', () => {

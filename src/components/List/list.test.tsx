@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react"
-import Lista from "."
-import { Tarefa } from "../../../contexts/task"
-import { ITarefa } from "../../../interfaces/tarefa"
+import Lista from "./index"
+import { Tarefa } from "../../contexts/TaskContext/index"
+import { ITarefa } from "../../interfaces/tarefa"
 
 it('must match snapshot', () => {
     const tarefas: ITarefa[] = [{

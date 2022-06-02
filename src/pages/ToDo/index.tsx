@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Tarefa } from "../../contexts/task";
+import { Tarefa } from "../../contexts/TaskContext";
 import { ITarefa } from "../../interfaces/tarefa";
-import Formulario from "./form";
+import Formulario from "../../components/Form";
 import * as todoServices from '../../services/todoServices'
-import Lista from "./list";
+import Lista from "../../components/List";
 import { logoutUser } from "../../services/userServices";
-import { AuthenticationContext } from "../../contexts/authenticated";
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 
 export const ToDo = () => {
     const [taskStatus, setTaskStatus] = useState<boolean|undefined>(undefined);
